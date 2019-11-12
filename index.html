@@ -1,0 +1,61 @@
+<!-- 
+  design coming from here 
+  https://assets.materialup.com/uploads/a3b1ba6f-a90c-4d80-9fe6-f746283b5253/preview.png
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="a simple todo list in vueJs">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title>ToLi - A todo list in Vuejs</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <section id="app">
+    <h1>ToLi - A todo list in VueJS</h1>
+    <div class="insert">
+      <input v-model="newTodo" type="text" placeholder="write your task" id="inputTask">
+      <button v-on:click="addTask">Add</button>
+    </div>
+    <div class="upcoming">
+      <span>upcoming - <span> {{ todoNumber }} </span> </span>
+      <ul>
+        <li v-for="item of upcomingTodo" v-if="item.complete == false">
+          <!-- v-if, when you click the Complete button, the item.complete change to true -->
+          <!-- <button v-on:click="completeTask">Complete</button> -->
+          <button v-on:click="item.complete = true">Complete</button>
+          <span>
+            {{ item.id }} - {{ item.text }} || {{ item.complete }}
+          </span>
+          <button v-on:click="removeTask">delete</button>
+        </li>
+      </ul>
+    </div>
+    <div class="finished">
+      <span>finished - <span> {{  }}</span> </span>
+      <ul>
+        <li v-for="item of upcomingTodo" v-if="item.complete == true">
+          <button v-on:click="item.complete = false">Not Completed</button>
+          <span>
+            {{ item.id }} - {{ item.text }}
+          </span>
+          <button v-on:click="removeTask">delete</button>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
